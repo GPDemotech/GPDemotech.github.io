@@ -1,231 +1,165 @@
-# Git笔记
-## 基本概念
-`Repository` 仓库，用于存放项目代码，每个项目对一个仓库
-`Fork` 复制克隆项目，该fork的项目是独立存在的
-
-`Pull request` ：发起合并请求，基于fork
-`Watch`：关注项目，可以接收到项目更新提醒
-`Issue`：事务卡片，发现代码bug，但目前没有成型代码，需要讨论时可用
-
-> 注意：私有仓库只能自己或者指定的朋友才有权限操作（以前收费现在不收费了）
-
-## 对文件的操作
-
-- 点击描述可以查看文件提交的详细信息；
-- 增加文件：选择`create new file`按钮新建文件；`upload`按钮上传文件；
-- 编辑文件：在代码仓库中，点击文件名，进入文件详情页，进行编辑； 
-- 删除文件：在代码仓库中，点击文件名，进入文件详情页，进行删除；
-- 下载检出文件：在代码仓库中点击`clone or download`按钮
-
-> 注意：删除的文件详细信息可以在`Commits`中查看，`Commits`可以查看每次修改的相关信息；编辑文件也算一次提交
-
-## 对issue的操作
-
-解决`issue`后进行关闭
-
-## 实战操作
-这里不做解释，实践出现问题建议返回第五集
-
-
-## 如何为开源项目做出贡献
-**新建issue**
-
-提交使用问题或者建议或者想法
-
-**Pull request**
-
-步骤：
-1. 	fork项目
-2. 	修改自己仓库的项目代码
-3.	新建pull request
-4.	等待作者操作（合并）
-
-## Git的安装和使用：
-**目的**：使用git管理github托管项目代码
-
-**官方下载网址**[https://git-scm.com/download/win](https://git-scm.com/download/win)
-
-**安装**：注意这里选择第一个；其余傻瓜式安装即可
-
-![install](images/install.png)
-
-**检验是否安装成功**：右击鼠标显示`Git GUI Here`和`Git Bash Here`
-
-## Git基本工作流程：
-### Git工作区域：
-1.	Git Repository（Git仓库）最终确定的文件保存到仓库，成为一个新的版本，并对他人可见
-2.	暂存区 暂存已经修改的文件最后统一提交到Git仓库中
-3.	工作区（Working Directory）添加、编辑、修改文件等动作
-
-### 一些需要记住的命令	
-- git status：确定文件当前所处Git工作区域；
-
-这里假设在工作区有文件 `HelloWorld.cpp`
-1. 工作区转入暂存区：
-
-```
-git status
-git add HelloWorld.cpp；
-```
-
-2. 暂存区转入Git 仓库：
-
-```
-git status
-git commit –m '提交描述'
-```
-
-3. 确定文件是否已在Git仓库中：
-
-```
-git status
-```
-
-4. 删除工作区文件：
-
-```
-git rm –f 文件名
-```
-例如：`git rm –f a.txt`
-
-5. 修改文件：
-```
-vi 文件名
-```
-
-例如 `vi a.txt`进入vim修改文件（退出使用：`wq`）
-
-> 如果对vim操作理解有困难的还是建议看一下视频，视频讲了增删改查的相应操作，看一下vim操作指南，对vim操作有全面的认识
-
-## Git基础设置：
-1.	设置用户名
-
-```
-git config –-global user.name '这里填写自己的用户名'
-```
-
-2.	设置用户名邮箱
-
-```
-git config –-global user.email '这里填写自己的用户名邮箱'
-```
-
-3.	查看设置
-
-> 注意：该设置在GitHub仓库主页显示谁提交了该文件，注意这里的  -  数目为2！
-
-## 初始化一个新的Git仓库：
-1.	创建文件夹
-2.	在文件夹内初始化Git（创建Git 仓库）
-
-命令行进入当前目录，使用 `git init`命令，成功会显示`.git`文件
-
-3.	向仓库中添加文件
-
-## Git远程仓库
-**使用目的**：备份、实现代码共享集中化管理
-
-![git远程仓库](images/git.png)
-
-如何将本地仓库同步到远程仓库中：
-1.	将远程仓库（github对应的项目）复制到本地：
-```
-git clone 仓库地址
-```
-
-> 注意：仓库地址在clone or download按钮下取得
-
-2.	进行文件增删改查，并添加到Git仓库中
-3.	将本地仓库同步到远程仓库中
-使用命令：`git push`
-
-以下本人进行本地仓库同步的完整代码 （Git为文件夹名；–Git为仓库名）
-
-```
-123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)
-$ git status
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-        GitLearning.docx
-
-nothing added to commit but untracked files present (use "git add" to track)
-
-123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)
-$ git add GitLearning.docx
-
-123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)
-$ git status
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
-
-        new file:   GitLearning.docx
-
-
-123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)
-$ git commit -m 'vision 1.0'
-[master cf5a4e1] vision 1.0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 GitLearning.docx
-
-123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)
-$ git status
-On branch master
-Your branch is ahead of 'origin/master' by 1 commit.
-  (use "git push" to publish your local commits)
-
-nothing to commit, working tree clean
-
-123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)
-$ git push
-Logon failed, use ctrl+c to cancel basic credential prompt.
-Username for 'https://github.com': yezhaodan
-Counting objects: 3, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 133.91 KiB | 11.16 MiB/s, done.
-Total 3 (delta 0), reused 0 (delta 0)
-To https://github.com/yezhaodan/-Git.git
-   aa5e68c..cf5a4e1  master -> master
-
-```
-
-> 如果`git push`出现`The requested URL returned error：403 Forbidden while accessing`问题如何解决：
-
-![403](images/403forbidden.png)
-
-## Github Page搭建网站
-### 个人网站
-**访问**
-
-https://用户名.github.io
-
-**搭建步骤**
-
-1.	创建个人站点 -> 新建仓库（注意：仓库名必须是 `用户名.github.io`）
-2.	在仓库下新建`index.html`的文件
-
-**测试**
-
-![test](images/test.png) 
-
-> 注意：`github pages`只支持静态网页，仓库里面只能是`.html`文件
-
-### 项目站点
-**访问**
-
-https://用户名.github.io/仓库名
-
-**搭建步骤**
-
-1.	进入项目主页，点击`settings`
-2.	在`settings`页面，点击`[Launch automatic page generator]`来自动生成主题页面（注意：目前没有这个了好像收费了）
-3.	新建站点基础信息设置
-4.	选择主题
-5.	生成网页
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Github笔记</title>
+	</head>
+	<body>
+		<h1>Git笔记</h1>
+		<h3 style="color: red;">基本概念</h3>
+	<p>Repository 仓库，用于存放项目代码，每个项目对一个仓库</p>
+	<p>Fork 复制克隆项目，该fork的项目是独立存在的</p>
+	<p>Pull request ：发起合并请求，基于fork</p>
+	<p>Watch：关注项目，可以接收到项目更新提醒</p>
+	<p>Issue：事务卡片，发现代码bug，但目前没有成型代码，需要讨论时可用</p>
+
+	<p> 注意：私有仓库只能自己或者指定的朋友才有权限操作（以前收费现在不收费了）</p>
+
+<h3 style="color: red;">对文件的操作</h3>
+
+<p>点击描述可以查看文件提交的详细信息；</p>
+<p>增加文件：选择create new file按钮新建文件；upload按钮上传文件；</p>
+<p> 编辑文件：在代码仓库中，点击文件名，进入文件详情页，进行编辑； </p>
+<p>删除文件：在代码仓库中，点击文件名，进入文件详情页，进行删除；</p>
+<p> 下载检出文件：在代码仓库中点击clone or download按钮</p>
+
+<p style="color: red;">注意：删除的文件详细信息可以在Commits中查看，Commits可以查看每次修改的相关信息；编辑文件也算一次提交</p>
+
+<h3 style="color: red;">对issue的操作</h3>
+<p>(注意：解决issue后进行关闭)</p>
+<h3 style="color: red;">如何为开源项目做出贡献</h3>
+<p>1、新建issue<p>
+<p>提交使用问题或者建议或者想法<p>
+<p>2、Pull request</p>
+		<p>步骤如下：<br>
+		1. 	fork项目<br>
+		2. 	修改自己仓库的项目代码<br>
+		3.	新建pull request<br>
+		4.	等待作者操作（合并）<br></p>
+<h3>Git的安装和使用：</h3>
+<p>目的：使用git管理github托管项目代码<p>
+<p>官方下载网址<a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a><p>
+<p>安装：注意这里选择第一个；其余傻瓜式安装即可<p>
+<p>检验是否安装成功：右击鼠标显示Git GUI Here和Git Bash Here<p>
+
+<h3 style="color: red;">Git基本工作流程：</h3>
+<p>Git工作区域：</p>
+<p>1.	Git Repository（Git仓库）最终确定的文件保存到仓库，成为一个新的版本，并对他人可见<br>
+	2.	暂存区 暂存已经修改的文件最后统一提交到Git仓库中<br>
+	3.	工作区（Working Directory）添加、编辑、修改文件等动作<br></p>
+
+<h3 style="color: red;">一些需要记住的命令	</h3>
+<p>- git status：确定文件当前所处Git工作区域；这里假设在工作区有文件 HelloWorld.cpp</p>
+	<p>1. 工作区转入暂存区：<br>
+		git status<br>
+		git add HelloWorld.cpp；<br></p>
+	<p>2. 暂存区转入Git 仓库：<br>
+		git status<br>
+		git commit –m '提交描述'<br></p>
+	<p>3. 确定文件是否已在Git仓库中：<br>
+	git status<br></p>
+	<p>4. 删除工作区文件：<br>
+	git rm –f 文件名<br>
+	例如：`git rm –f a.txt`<br></p>
+	<p>5. 修改文件：<br>
+		vi 文件名<br>
+		例如 vi a.txt进入vim修改文件（退出使用：wq）<br>
+		 如果对vim操作理解有困难的还是建议去看一下B站庄七的玩转git视频，视频讲了增删改查的相应操作，看一下vim操作指南，对vim操作有全面的认识<br></p>
+	<h3 style="color: red;">Git基础设置：</h3>
+		1.	设置用户名
+			git config –-global user.name '这里填写自己的用户名'
+		2.	设置用户名邮箱
+			git config –-global user.email '这里填写自己的用户名邮箱'
+		3.	查看设置
+			注意：该设置在GitHub仓库主页显示谁提交了该文件，注意这里的  -  数目为2！
+	<h3 style="color: red;">初始化一个新的Git仓库：</h3>
+		<p>1.	创建文件夹</p>
+		<p>2.	在文件夹内初始化Git（创建Git 仓库）</p>
+		<p>命令行进入当前目录，使用 git init命令，成功会显示.git文件</p>
+		<p>3.	向仓库中添加文件</p>
+
+	<h3 style="color: red;">Git远程仓库</h3>
+		<p>使用目的：备份、实现代码共享集中化管理</p>
+		<p>如何将本地仓库同步到远程仓库中：</p>
+		<p>1.	将远程仓库（github对应的项目）复制到本地：<br>
+			git clone 仓库地址<br>
+			注意：仓库地址在clone or download按钮下取得<br></p>
+		<p>2.	进行文件增删改查，并添加到Git仓库中</p>
+		<p>3.	将本地仓库同步到远程仓库中<br>
+		使用命令：git push<br></p>
+
+<p>以下是用命令行进行本地仓库同步的完整代码 （Git为文件夹名；–Git为仓库名）</p>
+<p>123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)<br>
+		$ git status<br>
+		On branch master<br>
+		Your branch is up to date with 'origin/master'.<br>
+		Untracked files:<br>
+		  (use "git add <file>..." to include in what will be committed)<br>
+		        GitLearning.docx<br>
+		nothing added to commit but untracked files present (use "git add" to track)<br>
+		123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)<br>
+		$ git add GitLearning.docx<br>
+		123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)<br>
+		$ git status<br>
+		On branch master<br>
+		Your branch is up to date with 'origin/master'.<br>
+		Changes to be committed:<br>
+		  (use "git reset HEAD <file>..." to unstage)<br>
+		        new file:   GitLearning.docx<br>
+		123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)<br>
+		$ git commit -m 'vision 1.0'<br>
+		[master cf5a4e1] vision 1.0<br>
+		 1 file changed, 0 insertions(+), 0 deletions(-)<br>
+		 create mode 100644 GitLearning.docx<br>
+		123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)<br>
+		$ git status<br>
+		On branch master<br>
+		Your branch is ahead of 'origin/master' by 1 commit.<br>
+		  (use "git push" to publish your local commits)<br>
+		nothing to commit, working tree clean<br>
+		123@DESKTOP-MHQCGKI MINGW64 ~/Desktop/Git/-Git (master)<br>
+		$ git push<br>
+		Logon failed, use ctrl+c to cancel basic credential prompt.<br>
+		Username for 'https://github.com': yezhaodan<br>
+		Counting objects: 3, done.<br>
+		Delta compression using up to 4 threads.<br>
+		Compressing objects: 100% (3/3), done.<br>
+		Writing objects: 100% (3/3), 133.91 KiB | 11.16 MiB/s, done.<br>
+		Total 3 (delta 0), reused 0 (delta 0)<br>
+		To https://github.com/yezhaodan/-Git.git<br>
+		   aa5e68c..cf5a4e1  master -> master<br></p>
+	<h4 style="color: red;">如果git push出现The requested URL returned error：403 Forbidden while accessing问题如何解决下：</h4>
+		<p>
+			答案：私有项目，没有权限，输入用户名密码，或远程地址采用这种类型：<br>
+			git/config<br>
+			# 将<br>
+			[remote "origin"]<br>
+				url=https://github.com/用户名/仓库名.git<br>
+			修改为：<br>
+			[remote"origin"]<br>
+				url=https//用户名:密码@github.com/用户名/仓库名.git<br>
+		</p>
+<h3 style="color: red;">Github Page搭建网站</h3>
+<p>个人网站</p>
+<p>访问</p>
+  <p>  https://用户名.github.io</p>
+<h3 style="color: red;">搭建步骤</h3>
+<p>1.	创建个人站点 -> 新建仓库（注意：仓库名必须是 `用户名.github.io`）</p>
+<p>2.	在仓库下新建index.html的文件</p>
+<p style="color: red;">注意：github pages只支持静态网页，仓库里面只能是`.html`文件</p>
+<h3 style="color: red;">项目站点</h3>
+<p>访问</p>
+	<p>https://用户名.github.io/仓库名</p>
+<p>搭建步骤
+	1.	进入项目主页，点击settings<br>
+	2.	在settings页面，点击[Launch automatic page generator]来自动生成主题页面（注意：目前没有这个了好像收费了）<br>
+	3.	新建站点基础信息设置<br>
+	4.	选择主题<br>
+	5.	生成网页<br></p>
+	<p>
+		在这里我要说一下，此笔记是边看视频边写的笔记写的不是很好，有什么不好的地方可以说出来，第一次写，我也是看B站庄七的玩转git俩小时这个老师讲的挺不错的有点慢,但是细节也会讲一下。<br>
+		这个视频讲的一些挺基础的东西如果大家想深入了解git 的建议大家可以去买本书看看，庄七老师讲的都是一些入门的github。<br>
+		<a href="https://www.bilibili.com/video/av10475153">视频连接点这个可以进去看看</a><br>
+	</p>
+	</body>
+</html>
